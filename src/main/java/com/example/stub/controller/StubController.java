@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.concurrent.ExecutionException;
+
 @RestController
 @RequestMapping("/stubURL")
 public class StubController {
@@ -17,7 +19,7 @@ public class StubController {
     }
 
     @PostMapping
-    public ResponseEntity<String> stubURL(@RequestBody StubDTO stubDTO) {
+    public ResponseEntity<String> stubURL(@RequestBody StubDTO stubDTO) throws ExecutionException, InterruptedException {
         stubDTO.setAge(96);
         String result = stubService.createdMassage(stubDTO);
         System.out.println(stubDTO);
