@@ -28,7 +28,7 @@ public class StubServiceImpl implements StubService{
 
         String key = UUID.randomUUID().toString();
 
-        /*
+
         //Отправляем сообщения в асинхронном режиме, ждем ответа от кафки успешно прошла запись или с ошибкой
         CompletableFuture<SendResult<String, StubDTO>> future = kafkaTemplate.send("product-created-events-topic", key, stubDTO);
         future.whenComplete((result, exception) -> {
@@ -41,13 +41,16 @@ public class StubServiceImpl implements StubService{
 
         //Если хотим сделать синхронный режим (простой вариант)
         //future.join();
-         */
 
+
+        /*
         //Синхронный режим, правильный вариант
         SendResult<String, StubDTO>  result = kafkaTemplate
                 .send("product-created-events-topic", key, stubDTO).get();
         LOGGER.info("Message sent successfully: {}", result.getRecordMetadata());
         LOGGER.info("Return: {}", key);
+
+         */
 
         return key;
     }
